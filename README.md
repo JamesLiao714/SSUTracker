@@ -85,7 +85,7 @@ Extract appearance embedding  on all MOT17 videos given detections `dets/mot17`:
 python infer_reid_pedestrain.py --videos dataset/videos/mot17 --dets dets/mot17
 ```
 
-For vehicles reid, please refernce [here](https://github.com/LCFractal/AIC21-MTMC).
+For vehicles reid, please refer to [this](https://github.com/LCFractal/AIC21-MTMC).
 
 
 Extracted embeddings are saved at save directory (i.e. `dets/mot17`).
