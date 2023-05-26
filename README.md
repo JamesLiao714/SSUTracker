@@ -1,6 +1,4 @@
 # SSUTracker
-# mot-sprcnn-su
-
 
 ## Install
 
