@@ -7,11 +7,11 @@
 3. [torchreid](https://github.com/KaiyangZhou/deep-person-reid)
 4. `pip install -r requirements.txt`
 
-## Download data
+## Download data for pedestrian tracking
 
 Download from [MOT Challenge](https://motchallenge.net/data/MOT17/) and [CrowdHuman](https://www.crowdhuman.org/)
 
-## Pretrained Weights
+## Pretrained Weights for pedestrian tracking
 
 It should be available at [here](https://github.com/amoshyc/mot-sprcnn-su/releases).
 
@@ -22,7 +22,11 @@ It should be available at [here](https://github.com/amoshyc/mot-sprcnn-su/releas
 
 Place them under `weights/`.
 
-## Prepare data
+## Dataset
+
+You can add other dataset such as car, vehicles, etc. by adding it into ```prepare.py```.
+
+For example, 
 
 ```
 python prepare.py --ch path/to/crowdhuman --mot17 /path/to/mot17 --mot20 /path/to/mot20
@@ -55,10 +59,10 @@ where `ch.json, ch17.json, ch20.json` are the COCO-format of annotation of Crowd
 ## Object Detector Training (Optional)
 
 
-Train the Sparse R-CNN with KL Loss on CrowdHuman and validate on MOT17:
+For example, train the Sparse R-CNN with SU on CrowdHuman and validate on MOT17:
 
 ```
-python train.py --train_json jsons/ch.json --valid_json jsons/mot17.json --num_proposals 300
+python train_detector.py --train_json jsons/ch.json --valid_json jsons/mot17.json --num_proposals 300
 ```
 
 By default, pretrained weight `weights/p300_coco.pth` is used. Refer to `train.py` for more detail.
@@ -78,13 +82,11 @@ The detections are saved at `dets/mot17`.
 Extract appearance embedding  on all MOT17 videos given detections `dets/mot17`:
 
 ```
-python infer_osnet.py --videos dataset/videos/mot17 --dets dets/mot17
+python infer_reid_pedestrain.py --videos dataset/videos/mot17 --dets dets/mot17
 ```
 
-Transformer ReID
-```
-python infer_TransReid.py --videos ../dataset/videos/mot17 --dets ../dets/mot17_trans --c configs/deit_transreid_stride.yml
-```
+For vehicles reid, please refernce AIcity for some pretrained models.
+
 
 Extracted embeddings are saved at save directory (i.e. `dets/mot17`).
 
