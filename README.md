@@ -98,11 +98,3 @@ python track17.py --videos dataset/videos/mot17 --dets dets/mot17 --outs outs/mo
 ```
 
 Tracking results is saved at `outs/mot17`.
-
-## Sparse Refining module
-
-```
-python SRM.py
-```
-
-Please set the parameters in .py file
