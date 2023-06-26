@@ -13,7 +13,7 @@ Download from [MOT Challenge](https://motchallenge.net/data/MOT17/) and [CrowdHu
 
 ## Pretrained Weights for pedestrian tracking
 
-It should be available at [here](https://github.com/amoshyc/mot-sprcnn-su/releases).
+It should be available at [here](https://github.com/JamesLiao714/SSUTracker/releases).
 
 1. `p300_ch.ckpt`: 300 proposal bounding boxes, trained on CrowdHuman
 2. `p300_coco.ckpt`: 300 proposal bounding boxes, trained on COCO
