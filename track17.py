@@ -142,14 +142,14 @@ class Track:
         self.time_since_update += 1
 
     def update(self, det):
-        if UNC:
-            self.x, self.P = kalman.update(
-                self.x, self.P, det.bbox.numpy(), np.diag(det.unc), Track.H
-            )
-        else:
-            self.x, self.P = kalman.update(
-                self.x, self.P, det.bbox.numpy(), self.MSR, Track.H
-            )
+        # if UNC:
+        #     self.x, self.P = kalman.update(
+        #         self.x, self.P, det.bbox.numpy(), np.diag(det.unc), Track.H
+        #     )
+        # else:
+        self.x, self.P = kalman.update(
+            self.x, self.P, det.bbox.numpy(), self.MSR, Track.H
+        )
         self.history.append(det)
         
         #print("best: ", self.best_unc)
@@ -157,8 +157,11 @@ class Track:
         wh = det.bbox[2:] - det.bbox[:2]
         su = (det.unc / torch.cat([wh, wh])).sum()
         if su <= self.avg_su:
-            self.t_emb = 0.2* self.t_emb + 0.8* det.emb
+            self.t_emb = 0.8* self.t_emb + 0.2* det.emb
             self.avg_su =(self.avg_su + su)/ len(self.history)
+        else:
+            self.t_emb = det.emb
+
         
         self.hits += 1
         self.time_since_update = 0
